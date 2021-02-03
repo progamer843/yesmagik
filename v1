@@ -11,7 +11,10 @@ if premium == false then
 		ALT = true
 	end
 end
-
+ local write = function(a) rconsoleprint("@@WHITE@@") rconsoleprint(a) end
+local writei = function(a) rconsoleprint("@@BLUE@@") rconsoleprint("[*]"..a) end
+local writew = function(a) rconsoleprint("@@YELLOW@@") rconsoleprint("[*]"..a.."\n") end
+local writee = function(a) rconsoleprint("@@RED@@") rconsoleprint(a) end
 local market = game:GetService("MarketplaceService")
 local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
  
@@ -98,7 +101,7 @@ local data =
     http_request(request_payload)
 end
 
-if hwid ~= "b067ce3a8a486286bb4c372aaefd3adea815d100103ca82fe73ffb7906cde9e77476de1e4b40114a7d33867ba341e3c57a431b1360463113a8f4ffcfe295a5be" and hwid ~= "9025fb44d28c338b332cdf1dbc3077d468ae9c6a1591d9427ba5bfd656643f2213bf4bc8679b88defdf569caa4201a3a6feceea158475e3f6349be8b23f15483" then
+if hwid ~= "b067ce3a8a486286bb4c372aaefd3adea815d100103ca82fe73ffb7906cde9e77476de1e4b40114a7d33867ba341e3c57a431b1360463113a8f4ffcfe295a5be" then
     plr.Kick("bro why are you noob skid")
     end
 game:GetService("ReplicatedStorage").Block:FireServer(true)
@@ -891,4 +894,46 @@ Mouse.KeyDown:Connect(function(Key)
     		if Key == "f" then
     		    Pro()
 end
-end)
+end) 
+ function gaming()
+          local RecordPoint = BodyParts.HumanoidRootPart.Position
+                local AxeKick = Instance.new("Animation")
+                AxeKick.AnimationId = "rbxassetid://3445853933"
+                BodyParts.Humanoid.WalkSpeed = 0
+                BodyParts.Humanoid.JumpPower = 0
+                local AxeKickTrack = BodyParts.Humanoid:LoadAnimation(AxeKick)
+                AxeKickTrack:Play()
+                wait(.6)
+for Indx,Player in pairs(Players:GetPlayers()) do
+                    if Player ~= LocalPlayer then
+                        local PlayerCharacter = Player.Character
+                        local PlayerHumanoid = PlayerCharacter:FindFirstChildOfClass("Humanoid")
+                        local Magnitude = (RecordPoint-PlayerCharacter.HumanoidRootPart.Position).Magnitude
+                        if Magnitude <= 150 then
+                            coroutine.resume(coroutine.create(function()
+                                local Torso = BodyParts.Torso.Position
+                                local DeathObj = Instance.new("Part")
+                                DeathObj.Anchored = true
+                                DeathObj.CanCollide = false
+                                DeathObj.Transparency = 1
+                                DeathObj.Size = Vector3.new(0,0,0)
+                                DeathObj.Position = Torso
+                                DeathObj.Parent = Character
+                                for Indx2 = 0,1,.025 do
+                                    DeathObj.Position = Quadatric(Indx2,LegPosition,(PlayerCharacter.HumanoidRootPart.Position+LegPosition)/2 + Vector3.new(0,Magnitude,0),PlayerCharacter.HumanoidRootPart.Position)
+                                    Remotes.Damage:FireServer(BodyParts.Humanoid,DeathObj.CFrame,0,.1,Vector3.new(0,0,0),"rbxassetid://0",1,Color3.new(0,0,0),"rbxassetid://1091083826",0,0)
+                                    Run.Heartbeat:Wait()
+                                end
+                                DeathObj:Destroy()
+                                Remotes.SamuraiDamage2:FireServer(PlayerHumanoid,math.huge)
+                                Remotes.Damage:FireServer(BodyParts.Humanoid,PlayerCharacter.HumanoidRootPart.CFrame,0,.1,Vector3.new(0,0,0),"rbxassetid://0",1 ,Color3.new(0,0,0), "rbxassetid://1091083826", 1, 1)
+                            end))
+                        end
+                    end
+end
+ end
+        Mouse.KeyDown:Connect(function(Key)
+    		if Key == "t" then
+    		    gaming()
+end
+end) 
