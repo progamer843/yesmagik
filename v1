@@ -11,10 +11,7 @@ if premium == false then
 		ALT = true
 	end
 end
- local write = function(a) rconsoleprint("@@WHITE@@") rconsoleprint(a) end
-local writei = function(a) rconsoleprint("@@BLUE@@") rconsoleprint("[*]"..a) end
-local writew = function(a) rconsoleprint("@@YELLOW@@") rconsoleprint("[*]"..a.."\n") end
-local writee = function(a) rconsoleprint("@@RED@@") rconsoleprint(a) end
+
 local market = game:GetService("MarketplaceService")
 local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
  
