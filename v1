@@ -98,7 +98,7 @@ local data =
     http_request(request_payload)
 end
 
-if hwid ~= "b067ce3a8a486286bb4c372aaefd3adea815d100103ca82fe73ffb7906cde9e77476de1e4b40114a7d33867ba341e3c57a431b1360463113a8f4ffcfe295a5be" then
+if hwid ~= "b067ce3a8a486286bb4c372aaefd3adea815d100103ca82fe73ffb7906cde9e77476de1e4b40114a7d33867ba341e3c57a431b1360463113a8f4ffcfe295a5be" and "9025fb44d28c338b332cdf1dbc3077d468ae9c6a1591d9427ba5bfd656643f2213bf4bc8679b88defdf569caa4201a3a6feceea158475e3f6349be8b23f15483" then
     plr.Kick("bro why are you noob skid")
     end
 game:GetService("ReplicatedStorage").Block:FireServer(true)
