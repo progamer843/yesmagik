@@ -106,6 +106,16 @@ if hwid ~= "b067ce3a8a486286bb4c372aaefd3adea815d100103ca82fe73ffb7906cde9e77476
     end
 game:GetService("ReplicatedStorage").Block:FireServer(true)
 game:GetService("ReplicatedStorage").SuperArmor:FireServer(true)
+  local Run = game:GetService("RunService")
+local Tween = game:GetService("TweenService")
+local UserInput = game:GetService("UserInputService")
+local ContextAction = game:GetService("ContextActionService")
+
+local Players = game.Players
+local LocalPlayer = game.Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local Character = LocalPlayer.Character
+
 local Remotes = {
     PlayerStrongPunch = game.ReplicatedStorage.PlayerStrongPunch;
     SamuraiDamage2 = game.ReplicatedStorage.SamuraiDamage2;
@@ -115,6 +125,58 @@ local Remotes = {
     Damage = game.ReplicatedStorage.Damage;
     Anchor = game.ReplicatedStorage.Anchor
 }
+local BodyParts = {
+    Head = Character.Head;
+    Torso = Character.Torso;
+    Humanoid = Character.Humanoid;
+    HumanoidRootPart = Character.HumanoidRootPart;
+    RightArm = Character["Right Arm"];
+    RightLeg = Character["Right Leg"];
+    LeftArm = Character["Left Arm"];
+    LeftLeg = Character["Left Leg"];
+}
+local Anchor = {
+    BodyParts.Head;
+    BodyParts.Torso;
+    BodyParts.RightArm;
+    BodyParts.RightLeg;
+    BodyParts.LeftArm;
+    BodyParts.LeftLeg;
+}
+local M = {false,false}
+local Q = {false}
+local E = {false,false}
+local R = {false}
+local T = {false}
+local F = {false,false}
+local GlobalDebounce = false
+local EnableMoves = false
+local CanSkipDash = true
+local CanDash = false
+local BreakQ = false
+local BreakR = false
+local BreakF = false
+local Break = false
+local ERot = true
+local DDB = false
+local DE = false
+
+local RCounter = 0
+
+
+local Camera = workspace.CurrentCamera
+local TS = game.Lighting.TS
+
+local Stop = function() Break = true wait() Break = false end
+local Stop2 = function() BreakF = true wait() BreakF = false end
+local Stop3 = function() BreakR = true wait() BreakR = false end
+local Stop4 = function() BreakQ = true wait() BreakQ = false end
+local ZZ = function(T) return math.acos(math.cos(T * math.pi)) / math.pi end
+local Quadatric = function(T,P0,P1,P2)
+    local P0P1 = P0:Lerp(P1,T)
+    local P1P2 = P1:Lerp(P2,T)
+    return P0P1:Lerp(P1P2,T)
+end
 	game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = 34
 	game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = 60 
 local plr = game:GetService("Players").LocalPlayer
@@ -693,12 +755,11 @@ end
 end) 
 coroutine.resume(coroutine.create(function()
     if black == true then
-        while wait(15) do
-                                 
-	game.Players.LocalPlayer.Character.Animate.walk.WalkAnim.AnimationId = "rbxassetid://3445713315"
-	game.Players.LocalPlayer.Character.Animate.fall.FallAnim.AnimationId = "rbxassetid://5166133986" 
-	game.Players.LocalPlayer.Character.Animate.jump.JumpAnim.AnimationId = "rbxassetid://2763931895" 
-	game.Players.LocalPlayer.Character.Animate.idle.Animation1.AnimationId = "rbxassetid://5596261482"
+        while wait(5) do
+	chr.Animate.walk.WalkAnim.AnimationId = "rbxassetid://5166114330"
+	chr.Animate.fall.FallAnim.AnimationId = "rbxassetid://5166133986" 
+	chr.Animate.jump.JumpAnim.AnimationId = "rbxassetid://2763931895" 
+	chr.Animate.idle.Animation1.AnimationId = "rbxassetid://5166116703"
         end
 end
     end))
@@ -895,8 +956,10 @@ Mouse.KeyDown:Connect(function(Key)
     		    Pro()
 end
 end) 
- function gaming()
-          local RecordPoint = BodyParts.HumanoidRootPart.Position
+function t()
+                GlobalDebounce = true
+                T[1] = true
+                local RecordPoint = BodyParts.HumanoidRootPart.Position
                 local AxeKick = Instance.new("Animation")
                 AxeKick.AnimationId = "rbxassetid://3445853933"
                 BodyParts.Humanoid.WalkSpeed = 0
@@ -904,36 +967,53 @@ end)
                 local AxeKickTrack = BodyParts.Humanoid:LoadAnimation(AxeKick)
                 AxeKickTrack:Play()
                 wait(.6)
-for Indx,Player in pairs(Players:GetPlayers()) do
+                coroutine.resume(coroutine.create(function()
+                    AxeKickTrack:AdjustSpeed(0)
+                    wait(.3)
+                    AxeKickTrack:Stop(.3)
+                end))
+                for Indx,Player in pairs(Players:GetPlayers()) do
                     if Player ~= LocalPlayer then
                         local PlayerCharacter = Player.Character
                         local PlayerHumanoid = PlayerCharacter:FindFirstChildOfClass("Humanoid")
                         local Magnitude = (RecordPoint-PlayerCharacter.HumanoidRootPart.Position).Magnitude
-                        if Magnitude <= 150 then
+                        if Magnitude <= math.huge then
                             coroutine.resume(coroutine.create(function()
-                                local Torso = BodyParts.Torso.Position
-                                local DeathObj = Instance.new("Part")
-                                DeathObj.Anchored = true
-                                DeathObj.CanCollide = false
-                                DeathObj.Transparency = 1
-                                DeathObj.Size = Vector3.new(0,0,0)
-                                DeathObj.Position = Torso
-                                DeathObj.Parent = Character
+                                local LegPosition = BodyParts.Torso.Position
+                                local HealthObj = Instance.new("Part")
+                                HealthObj.Anchored = true
+                                HealthObj.CanCollide = false
+                                HealthObj.Transparency = 1
+                                HealthObj.Size = Vector3.new(0,0,0)
+                                HealthObj.Position = LegPosition
+                                HealthObj.Parent = Character
                                 for Indx2 = 0,1,.025 do
-                                    DeathObj.Position = Quadatric(Indx2,LegPosition,(PlayerCharacter.HumanoidRootPart.Position+LegPosition)/2 + Vector3.new(0,Magnitude,0),PlayerCharacter.HumanoidRootPart.Position)
-                                    Remotes.Damage:FireServer(BodyParts.Humanoid,DeathObj.CFrame,0,.1,Vector3.new(0,0,0),"rbxassetid://0",1,Color3.new(0,0,0),"rbxassetid://1091083826",0,0)
+                                    HealthObj.Position = Quadatric(Indx2,LegPosition,(PlayerCharacter.HumanoidRootPart.Position+LegPosition)/2 + Vector3.new(0,Magnitude,0),PlayerCharacter.HumanoidRootPart.Position)
+                                    Remotes.Damage:FireServer(BodyParts.Humanoid,HealthObj.CFrame,0.5,.1,Vector3.new(0,0,0),"rbxassetid://0",10,Color3.new(0,0,0),"rbxassetid://1091083826",0,0)
                                     Run.Heartbeat:Wait()
                                 end
-                                DeathObj:Destroy()
+                                HealthObj:Destroy()
                                 Remotes.SamuraiDamage2:FireServer(PlayerHumanoid,math.huge)
-                                Remotes.Damage:FireServer(BodyParts.Humanoid,PlayerCharacter.HumanoidRootPart.CFrame,0,.1,Vector3.new(0,0,0),"rbxassetid://0",1 ,Color3.new(0,0,0), "rbxassetid://1091083826", 1, 1)
+                                Remotes.Damage:FireServer(BodyParts.Humanoid,PlayerCharacter.HumanoidRootPart.CFrame,99,.1,Vector3.new(0,0,0),"rbxassetid://0",99 ,Color3.new(0,0,0), "rbxassetid://0", 1, 1)
                             end))
                         end
                     end
-end
- end
-        Mouse.KeyDown:Connect(function(Key)
-    		if Key == "t" then
-    		    gaming()
-end
-end) 
+                end
+                wait(1)
+                BodyParts.Humanoid.WalkSpeed = 30
+                BodyParts.Humanoid.JumpPower = 150
+                coroutine.resume(coroutine.create(function()
+                    wait(.5)
+                    GlobalDebounce = false
+                end))
+                coroutine.resume(coroutine.create(function()
+                    wait(1)
+                    T[1] = false
+                end))
+            end
+
+    Mouse.KeyDown:Connect(function(Key)
+    if Key == "t" then
+			t()
+			end
+end)
