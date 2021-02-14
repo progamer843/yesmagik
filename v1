@@ -135,14 +135,7 @@ local BodyParts = {
     LeftArm = Character["Left Arm"];
     LeftLeg = Character["Left Leg"];
 }
-local Anchor = {
-    BodyParts.Head;
-    BodyParts.Torso;
-    BodyParts.RightArm;
-    BodyParts.RightLeg;
-    BodyParts.LeftArm;
-    BodyParts.LeftLeg;
-}
+
 local M = {false,false}
 local Q = {false}
 local E = {false,false}
@@ -301,9 +294,15 @@ function Asset(Id)
 	return "rbxassetid://"..Id
 end
 local AnimationTable = {
-    BigBoom = Instance.new("Animation")
+    BigBoom = Instance.new("Animation"),
+     uia = Instance.new("Animation"),
+      uib = Instance.new("Animation"),
+       uic = Instance.new("Animation")
 }
 AnimationTable.BigBoom.AnimationId = Asset(5242641804)
+AnimationTable.uia.AnimationId = Asset(5633587784)
+AnimationTable.uib.AnimationId = Asset(5633584586)
+AnimationTable.uia.AnimationId = Asset(5633583111)
 
 local Preloaded = {}
 local Objects = {}
@@ -803,16 +802,17 @@ mouse.KeyDown:connect(function(key)
 		blackholeactive = true
 		MainObj.CFrame = hrp.CFrame * CFrame.new(0,25,0)
 		repeat
- 		   blackholeVoidSize = blackholeVoidSize + 60
+ 		   blackholeVoidSize = blackholeVoidSize + 0.5
  		   blackholeTime = blackholeTime + 1
   		   blackholeSize = blackholeSize + 0.01
  		   _G.blackholeVoid()
-   		   game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(game.Players.LocalPlayer.Character.Humanoid, MainObj.CFrame, 0, 0, nil, blackholeSize, "", 1, 0)
+   		   game:GetService("ReplicatedStorage").Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, MainObj.CFrame,2, 0,Vector3.new(0,0,0),  "rbxassetid://", blackholeVoidSize,Color3.new(0,0,0),"", 1, 0)
    		   wait()
 		until human.Health == 0 or human.Health < 0 or blackholeTime == 400
         MainObj:Destroy()
 		blackholeTime = 0
 		blackholeSize = 0
+		blackholeVoidSize = 0
 		wait(0.5)
 		blackholeactive = false
 	end
@@ -822,7 +822,7 @@ _G.blackholeVoid = function()
     for i,v in pairs(game.Workspace.Entities:GetChildren()) do
         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
             if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < blackholeVoidSize then
-            game:GetService("ReplicatedStorage").Damage12Sans:FireServer(v.Humanoid, v.HumanoidRootPart.CFrame, 2.5, 0.1, ((MainObj.Position+MainObj.CFrame.LookVector*0)-v.HumanoidRootPart.Position)*1, 0, "rbxassetid://4137216950", 0.8, 0)
+            game.ReplicatedStorage.Damage:FireServer(v.Humanoid, v.HumanoidRootPart.CFrame, 2.5, 0.1, ((MainObj.Position+MainObj.CFrame.LookVector*0)-v.HumanoidRootPart.Position)*1,  "rbxassetid://4137216950", 0.1,Color3.new(0,0,0),"", 1, 1)
             end
         end
     end
@@ -993,8 +993,14 @@ function t()
                                     Run.Heartbeat:Wait()
                                 end
                                 HealthObj:Destroy()
+                                for i = 1,15 do
+                                game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(PlayerHumanoid, PlayerCharacter.HumanoidRootPart.CFrame, 0, 0, Vector3.new(0, 0, 0), .5, "", 1, 1)
+                                                                game:GetService("ReplicatedStorage").Damage12:FireServer(PlayerHumanoid, PlayerCharacter.HumanoidRootPart.CFrame, 0, 0, Vector3.new(0, 0, 0), .5, "", 1, 1)
+
                                 Remotes.SamuraiDamage2:FireServer(PlayerHumanoid,math.huge)
                                 Remotes.Damage:FireServer(BodyParts.Humanoid,PlayerCharacter.HumanoidRootPart.CFrame,99,.1,Vector3.new(0,0,0),"rbxassetid://0",99 ,Color3.new(0,0,0), "rbxassetid://0", 1, 1)
+                                wait()
+                                end
                             end))
                         end
                     end
@@ -1017,3 +1023,185 @@ function t()
 			t()
 			end
 end)
+local LastBottomObj
+local Model = Instance.new("Model")
+Model.Name = "Obj"
+Model.Parent = chr
+_G.shgtoss = function() 
+
+    Model.Parent = chr
+
+    local knifeass = Instance.new("Part")
+    local knife = knifeass:Clone()
+    knife.Anchored = false
+    knife.CanCollide = false
+    knife.Massless = true
+    knife.Transparency = 1
+    knife.Size = Vector3.new(30,30,30)
+    knife.CFrame = hrp.CFrame * CFrame.new(0,0,0)
+    knife.Parent = Model
+
+    local boopyve = Instance.new("BodyVelocity")
+    boopyve.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+    boopyve.P = math.huge
+    boopyve.Velocity = knife.CFrame.lookVector * 50
+    boopyve.Parent = knife
+    boopyve.Name = "Force"
+
+    coroutine.resume(coroutine.create(function()
+    game.Debris:AddItem(knife, 15)
+    wait(15)
+    knifeass:Destroy()
+    Model.Parent = game.Workspace
+    end))
+
+    coroutine.resume(coroutine.create(function()
+        local ProjectileAuraSetter = 0
+        repeat
+        wait()
+            ProjectileAuraSetter = ProjectileAuraSetter + 1
+            game.ReplicatedStorage.Damage:FireServer(human, knife.CFrame * CFrame.new(0,0,-10), 1, 0,Vector3.new(0, 0, 0), "rbxassetid://", 10, Color3.new(0, 0, 0), "rbxassetid://367499850", 0, 0)
+   game:GetService("ReplicatedStorage").Damage12:FireServer(human, knife.CFrame * CFrame.new(0,0,-10) , 1, 0, Vector3.new(0, 0, 0), .5, "", 1, 1)
+
+        until Model.Parent ~= chr
+    end))
+
+    local debounce = false
+    
+    -- deal damage if arm hits a humanoid
+    local hitRegister = knife.Touched:Connect(function(hit)
+        if hit.Parent:FindFirstChild("Humanoid") and hit.Parent ~= chr then
+                if debounce == false then
+                debounce = true
+                delay(.01, function() debounce = false end)
+            game.ReplicatedStorage.Berserk:FireServer(hit.Parent.Humanoid)
+            game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+            for i = 1,25 do
+            game:GetService("ReplicatedStorage").ULFDamage:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 5, 0, Vector3.new(0, 0, 0), .05, "", 1, 1)
+            end
+   game:GetService("ReplicatedStorage").Damage12:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 5, 0, Vector3.new(0, 0, 0), .5, "", 1, 1)
+game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(hit.Parent.Humanoid, 69420 ^5487489 * math.huge)
+            knifeass:Destroy()
+            Model.Parent = game.Workspace
+            end
+        elseif(hit.Parent.Parent:FindFirstChild("Humanoid")) and hit.Parent ~= chr then
+                if debounce == false then
+                debounce = true
+                delay(.01, function() debounce = false end)
+            game.ReplicatedStorage.Berserk:FireServer(hit.Parent.Humanoid)
+            game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+            for i = 1,25 do
+            game:GetService("ReplicatedStorage").ULFDamage:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 5, 0, Vector3.new(0, 0, 0), .05, "", 1, 1)
+            end
+   game:GetService("ReplicatedStorage").Damage12:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 5, 0, Vector3.new(0, 0, 0), .5, "", 1, 1)
+game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(hit.Parent.Humanoid, 69420 ^5487489 * math.huge)
+            knifeass:Destroy()
+            Model.Parent = game.Workspace
+            end
+        end
+    end)
+end
+
+local tossactive = false
+mouse.KeyDown:Connect(function(key)
+    if key == 'h' then
+        tossactive = true
+        
+        game:GetService("ReplicatedStorage").ParticleEvent:FireServer("aura")
+     
+        wait(0.1)
+        game:GetService("ReplicatedStorage").ParticleEvent:FireServer("noaura")
+        wait(0.4)
+        _G.shgtoss()
+        wait(0.2)
+ 
+        repeat wait() until Model.Parent == game.Workspace
+        wait(2.5)
+        tossactive = false
+    end
+end)
+local eas = false
+    Mouse.KeyDown:Connect(function(Key)
+    if Key == "=" then
+    if eas == false then
+    eas = true
+		rStorage.RTZ:FireServer(true)
+	 
+		elseif eas == true then
+		eas = false
+		rStorage.RTZ:FireServer(false)
+	 
+		end
+		end
+end)
+local RawGameTable = getrawmetatable(game)
+local oldNamecall = RawGameTable.__namecall
+
+
+-- (RTZ) Counter
+rStorage.RTZClient.OnClientEvent:connect(function(GivenPlayer)
+	if GivenPlayer ~= Player then
+		local Humanoid = GivenPlayer.Character.Humanoid
+		rStorage.RTZDamage:FireServer(Humanoid, 99)
+		rStorage.KnockAdvanced:FireServer(Humanoid)
+		rStorage.Damage:FireServer(Humanoid, Humanoid.Parent.Torso.CFrame, 5, 3, Humanoid.Parent.Torso.CFrame:Inverse().lookVector * 0, "rbxassetid://5482711860", 0, Color3.new(255, 255, 255), "rbxassetid://2050481695", 1, 7.5)
+						local esa = math.random(1,2)
+						if esa == 1 then
+						    		local ass1 = Player.Character.Humanoid:LoadAnimation(AnimationTable.uia)
+						    ass1:Play()
+						elseif esa == 2 then
+						    	local ass2 = Player.Character.Humanoid:LoadAnimation(AnimationTable.uib)
+					        ass2:Play()
+	
+				            end
+
+
+	end
+end)
+
+coroutine.resume(coroutine.create(function()
+	for i = 1, #CaveSounds do
+		PreloadAudio(CaveSounds[i])
+	end
+	for i = 1, #Songs do
+		PreloadAudio(Songs[i].ID)
+	end
+	PreloadAudio(4693807000)
+	PreloadAudio(4988868452)
+	PreloadAudio(5004316774)
+	PreloadAudio(5067081732)
+	PreloadAudio(5002748505)
+	PreloadAudio(142684400)
+	PreloadAudio(5128453901)
+	PreloadAudio(1996970202)
+	PreloadAudio(5296211749)
+	PreloadAudio(485221165)
+	PreloadAudio(4909544237)
+	PreloadAudio(5186302649)
+	PreloadAudio(701184936)
+	PreloadAudio(3164296220)
+	PreloadAudio(148148455)
+	PreloadAudio(143639913)
+	PreloadAudio(3650195003)
+	PreloadAudio(2636947957)
+	PreloadAudio(5261530705)
+	PreloadAudio(2338397562)
+	PreloadAudio(1563991094)
+	PreloadAudio(5002748179)
+	PreloadAudio(5391916430)
+	PreloadAudio(5385768747)
+	PreloadAudio(3477214701)
+	PreloadAudio(2554385540)
+	PreloadAudio(410417720)
+	PreloadAudio(159335846)
+	PreloadAudio(2642969814)
+	PreloadAudio(289556450)
+	PreloadAudio(851889797)
+	PreloadAudio(4220584519)
+	PreloadAudio(4616924854)
+	PreloadAudio(4594682362)
+	PreloadAudio(5482711860)
+	PreloadAudio(4775994326)
+end))
+
+
