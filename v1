@@ -1171,6 +1171,61 @@ game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.
     end
 end
 end)
+local LastBottomObj
+local asd = Instance.new("Model")
+asd.Name = "Obj"
+asd.Parent = Character
+local ase = Instance.new("Part")
+ase.Anchored = true
+ase.CanCollide = false
+ase.Massless = true
+ase.Transparency = 1
+ase.Size = Vector3.new(1,1,1)
+ase.Parent = Model
+local assas = 200
+mouse.KeyDown:connect(function(key)
+	if key == "0" then
+	    
+
+	 
+		repeat
+		    		ase.CFrame = hrp.CFrame * CFrame.new(0,assas,0)
+
+		    assas = assas - 0.25
+		   rStorage.PlayerStrongPunch2:FireServer(Vector3.new(-30, -4, -30), Vector3.new(-15, -4, -15), BrickColor.new("Black"))
+   		   game:GetService("ReplicatedStorage").Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, ase.CFrame,3, 0,Vector3.new(0,0,0),  "rbxassetid://", 15,Color3.new(0,0,0),"", 0, 0)
+   		   wait()
+		until human.Health == 0 or human.Health < 0 or assas == 0
+ 		game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame , 25, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 30, Color3.new(0 ,0 ,0), "", 1, 1)
+
+		       for i,v in pairs(game.Workspace.Entities:GetChildren()) do
+        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < math.huge then
+                for i = 1,10,1 do
+                                                game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(game.Players.LocalPlayer.Character.Humanoid, ase.CFrame, 0, 0, Vector3.new(0, 0, 0), 9, "", 1, 1)
+                                                wait()
+                                                end
+for i =  1,10,1 do
+   game:GetService("ReplicatedStorage").Anchor:FireServer(v["Torso"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Head"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Right Arm"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Left Arm"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Right Leg"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Left Leg"],true)
+game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
+    game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
+game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
+                                game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(v.Humanoid, v.HumanoidRootPart.CFrame, 0, 0, Vector3.new(0, 0, 0), 0.9, "", 1, 1)
+                                wait()
+                                end
+                                assas = 200
+
+
+            end
+        end
+    end
+end
+end)
 local RawGameTable = getrawmetatable(game)
 local oldNamecall = RawGameTable.__namecall
 
