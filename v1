@@ -764,16 +764,6 @@ end
     end))
 
 
-_G.blackholeVoid = function()
-    for i,v in pairs(game.Workspace.Entities:GetChildren()) do
-        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
-            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < blackholeVoidSize then
-            game.ReplicatedStorage.Damage:FireServer(v.Humanoid, v["Head"].CFrame, 0, 0.1, ((MainObj.CFrame+MainObj.CFrame.LookVector*0)-v.Humanoid.CFrame)*1,  "rbxassetid://4137216950", 0.1,Color3.new(0,0,0),"", 1, 1)
-            game.ReplicatedStorage.Damage:FireServer(human, chr.HumanoidRootPart.CFrame, 0, 1, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 30 + Vector3.new(0, 15, 0), "rbxassetid://241837157", .1, Color3.new(255, 0, 0), "", 1, 1)
-            end
-        end
-    end
-end
 local blackholeVoidSize = 0
 
 local blackholeSize = 0
@@ -1133,6 +1123,53 @@ local eas = false
 	 
 		end
 		end
+end)
+local LastBottomObj
+local asd = Instance.new("Model")
+asd.Name = "Obj"
+asd.Parent = Character
+local ase = Instance.new("Part")
+ase.Anchored = true
+ase.CanCollide = false
+ase.Massless = true
+ase.Transparency = 1
+ase.Size = Vector3.new(1,1,1)
+ase.Parent = Model
+local assas = 100
+mouse.KeyDown:connect(function(key)
+	if key == ";" then
+	    
+
+		blackholeactive = true
+		repeat
+		    		ase.CFrame = hrp.CFrame * CFrame.new(0,assas,0)
+
+		    assas = assas - 0.25
+   		   game:GetService("ReplicatedStorage").Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, ase.CFrame,2, 0,Vector3.new(0,0,0),  "rbxassetid://", 10,Color3.new(0,0,0),"", 1, 0)
+   		   wait()
+		until human.Health == 0 or human.Health < 0 or assas == 0
+ 		game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame , 25, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 30, Color3.new(0 ,0 ,0), "", 1, 1)
+
+		       for i,v in pairs(game.Workspace.Entities:GetChildren()) do
+        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < math.huge then
+   game:GetService("ReplicatedStorage").Anchor:FireServer(v["Torso"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Head"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Right Arm"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Left Arm"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Right Leg"],true)
+game:GetService("ReplicatedStorage").Anchor:FireServer(v["Left Leg"],true)
+game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
+    game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
+game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
+                                game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(v.Humanoid, v.HumanoidRootPart.CFrame, 0, 0, Vector3.new(0, 0, 0), 0.9, "", 1, 1)
+                                assas = 100
+
+
+            end
+        end
+    end
+end
 end)
 local RawGameTable = getrawmetatable(game)
 local oldNamecall = RawGameTable.__namecall
