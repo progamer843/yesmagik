@@ -420,7 +420,7 @@ function ABDSound.new(SoundId, Volume, Pitch, Loop, LoopTimes, CustomPlayer, Sta
 		rStorage.Damage12:FireServer(hum, rp.CFrame, 0, 0, Vector3.new(0, 0, 0), 9e999, "rbxassetid://"..SoundId, Pitch, Volume/4.5);
 	end
 	function Object:FixTime(Sound)
-		game:GetService("RunService").RenderStepped:Wait()
+		game:GetServie("RunService").RenderStepped:Wait()
 		Sound.TimePosition = (tick() - Start) * Pitch
 	end
 	Object:Update()
@@ -619,6 +619,7 @@ function RemakeMenuGui(AbilityName, PowerStat, SpeedStat, DurabilityStat)
 		end
 	end
 end
+
 function OnSpawn(Character)
 	ABDSound.StopAll()
 	Posing = false
@@ -705,7 +706,7 @@ function OnSpawn(Character)
 			end
 		end)
 	end)
-	RemakeMenuGui("The Meme Spec:\nOver Heaven", "∞", "S++++++++++++++++++++++++++", "∞")
+	RemakeMenuGui(" Magik Spec:\nOver Funny", "STRONK MEN", "FAST ASS", "BRUH")
 end
 
 Effects.DescendantAdded:Connect(function(v)
@@ -774,7 +775,7 @@ local blackholeactive = false
 
 local Objs = {}
 local LastBottomObj
-local Model = Instance.new("Model")
+	    local Model = Instance.new("Model")
 Model.Name = "Obj"
 Model.Parent = Character
 local MainObj = Instance.new("Part")
@@ -788,7 +789,6 @@ MainObj.Parent = Model
 mouse.KeyDown:connect(function(key)
 	if key == "e" then
     if blackholeactive == true then return end
-
 		blackholeactive = true
 		MainObj.CFrame = hrp.CFrame * CFrame.new(0,25,0)
 		repeat
@@ -1083,7 +1083,7 @@ game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(hit.Parent.Humano
             for i = 1,25 do
             game:GetService("ReplicatedStorage").ULFDamage:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 5, 0, Vector3.new(0, 0, 0), .05, "", 1, 1)
             end
-   game:GetService("ReplicatedStorage").Damage12:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 5, 0, Vector3.new(0, 0, 0), .5, "", 1, 1)
+   game:GetService("ReplicatedStorage").Damage12:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 5, 0, Vector3.new(0, 0, 0), .75, "", 1, 1)
 game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(hit.Parent.Humanoid, 69420 ^5487489 * math.huge)
             knifeass:Destroy()
             Model.Parent = game.Workspace
@@ -1135,56 +1135,9 @@ ase.Massless = true
 ase.Transparency = 1
 ase.Size = Vector3.new(1,1,1)
 ase.Parent = Model
-local assas = 100
-mouse.KeyDown:connect(function(key)
-	if key == ";" then
-	    
-
-		blackholeactive = true
-		repeat
-		    		ase.CFrame = hrp.CFrame * CFrame.new(0,assas,0)
-
-		    assas = assas - 0.25
-   		   game:GetService("ReplicatedStorage").Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, ase.CFrame,2, 0,Vector3.new(0,0,0),  "rbxassetid://", 10,Color3.new(0,0,0),"", 1, 0)
-   		   wait()
-		until human.Health == 0 or human.Health < 0 or assas == 0
- 		game.ReplicatedStorage.Damage:FireServer(game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character["Torso"].CFrame , 25, 0, Vector3.new(nil, nil,nil), "rbxassetid://245751634", 30, Color3.new(0 ,0 ,0), "", 1, 1)
-
-		       for i,v in pairs(game.Workspace.Entities:GetChildren()) do
-        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
-            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < math.huge then
-   game:GetService("ReplicatedStorage").Anchor:FireServer(v["Torso"],true)
-game:GetService("ReplicatedStorage").Anchor:FireServer(v["Head"],true)
-game:GetService("ReplicatedStorage").Anchor:FireServer(v["Right Arm"],true)
-game:GetService("ReplicatedStorage").Anchor:FireServer(v["Left Arm"],true)
-game:GetService("ReplicatedStorage").Anchor:FireServer(v["Right Leg"],true)
-game:GetService("ReplicatedStorage").Anchor:FireServer(v["Left Leg"],true)
-game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
-    game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
-game:GetService("ReplicatedStorage").SamuraiDamage2:FireServer(v.Humanoid, math.huge)
-                                game:GetService("ReplicatedStorage").Damage12Enderman:FireServer(v.Humanoid, v.HumanoidRootPart.CFrame, 0, 0, Vector3.new(0, 0, 0), 0.9, "", 1, 1)
-                                assas = 100
-
-
-            end
-        end
-    end
-end
-end)
-local LastBottomObj
-local asd = Instance.new("Model")
-asd.Name = "Obj"
-asd.Parent = Character
-local ase = Instance.new("Part")
-ase.Anchored = true
-ase.CanCollide = false
-ase.Massless = true
-ase.Transparency = 1
-ase.Size = Vector3.new(1,1,1)
-ase.Parent = Model
 local assas = 200
 mouse.KeyDown:connect(function(key)
-	if key == "0" then
+	if key == ";" then
 	    
 
 	 
@@ -1234,9 +1187,6 @@ local oldNamecall = RawGameTable.__namecall
 rStorage.RTZClient.OnClientEvent:connect(function(GivenPlayer)
 	if GivenPlayer ~= Player then
 		local Humanoid = GivenPlayer.Character.Humanoid
-		rStorage.RTZDamage:FireServer(Humanoid, 99)
-		rStorage.KnockAdvanced:FireServer(Humanoid)
-		rStorage.Damage:FireServer(Humanoid, Humanoid.Parent.Torso.CFrame, 5, 3, Humanoid.Parent.Torso.CFrame:Inverse().lookVector * 0, "rbxassetid://5482711860", 0, Color3.new(255, 255, 255), "rbxassetid://2050481695", 1, 7.5)
 						local esa = math.random(1,2)
 						if esa == 1 then
 						    		local ass1 = Player.Character.Humanoid:LoadAnimation(AnimationTable.uia)
@@ -1295,5 +1245,4 @@ coroutine.resume(coroutine.create(function()
 	PreloadAudio(5482711860)
 	PreloadAudio(4775994326)
 end))
-
 
